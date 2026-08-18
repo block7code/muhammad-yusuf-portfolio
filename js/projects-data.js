@@ -115,7 +115,7 @@ const PORTFOLIO_DATA = {
       category: "banking",
       categoryLabel: "Mobile Banking (Flutter)",
       featured: true,
-      image: "assets/images/project-flutter.jpg",
+      image: "assets/images/project-jconnect-dashboard.png",
       period: "January 2023 - Present",
       company: "PT Infosys Solusi Terpadu",
       summary: "Developed mobile banking application from scratch for all Bank Jatim account holders. Built responsive UI, microservices API integration, and offline-first Hive storage.",
@@ -133,36 +133,13 @@ const PORTFOLIO_DATA = {
       ]
     },
     {
-      id: "bank-jateng-bima",
-      title: "Bank JATENG Mobile Banking (BIMA)",
-      subtitle: "Core Mobile Banking Application Feature Engineering",
-      category: "banking",
-      categoryLabel: "Mobile Banking (Flutter)",
-      featured: true,
-      image: "assets/images/project-flutter.jpg",
-      period: "September 2024 - Present",
-      company: "PT Infosys Solusi Terpadu",
-      summary: "Developing and maintaining Bank Jateng mobile banking application (BIMA), integrating microservices, BCA Flazz, QRIS CPM/Tap, and major SDK framework upgrades.",
-      tags: ["Flutter", "Dart", "Microservices", "Shared Preferences", "BCA Flazz", "QRIS CPM"],
-      githubUrl: "",
-      liveUrl: "https://www.bankjateng.co.id",
-      metrics: "Enterprise Bank Jateng Client Base",
-      description: "Engineered responsive banking UI, robust error handling, bug fixing, and continuous framework SDK version upgrades ensuring compatibility with the latest Android & iOS standards.",
-      features: [
-        "BCA Flazz NFC integration for fast contactless transactions",
-        "QRIS CPM & Tap payment gateway integration",
-        "Framework SDK upgrade to latest Dart/Flutter releases",
-        "Optimized microservice API communication layer"
-      ]
-    },
-    {
       id: "bank-aceh-action",
       title: "Bank Aceh Mobile Banking (Action)",
-      subtitle: "Full-Featured Islamic Mobile Banking App",
+      subtitle: "Full-Featured Islamic Mobile Banking & eKYC App",
       category: "banking",
       categoryLabel: "Mobile Banking (Flutter)",
       featured: true,
-      image: "assets/images/project-flutter.jpg",
+      image: "assets/images/project-ekyc-screen.png",
       period: "June 2022 - Dec 2022 & Jan 2026",
       company: "PT Infosys Solusi Terpadu",
       summary: "Developed mobile banking application from scratch with Setor Tunai, Deeplink, BI-Fast transfer, eKYC Onboarding, and NFC e-money integration.",
@@ -177,6 +154,29 @@ const PORTFOLIO_DATA = {
         "Cardless cash deposit (Setor Tunai) & ATM Deeplink Omni",
         "NFC e-money balance inquiry and top-up",
         "Continuous maintenance and framework upgrade"
+      ]
+    },
+    {
+      id: "bank-jateng-bima",
+      title: "Bank JATENG Mobile Banking (BIMA)",
+      subtitle: "Core Mobile Banking Application Feature Engineering",
+      category: "banking",
+      categoryLabel: "Mobile Banking (Flutter)",
+      featured: true,
+      image: "assets/images/project-mobile-banking-mockups.png",
+      period: "September 2024 - Present",
+      company: "PT Infosys Solusi Terpadu",
+      summary: "Developing and maintaining Bank Jateng mobile banking application (BIMA), integrating microservices, BCA Flazz, QRIS CPM/Tap, and major SDK framework upgrades.",
+      tags: ["Flutter", "Dart", "Microservices", "Shared Preferences", "BCA Flazz", "QRIS CPM"],
+      githubUrl: "",
+      liveUrl: "https://www.bankjateng.co.id",
+      metrics: "Enterprise Bank Jateng Client Base",
+      description: "Engineered responsive banking UI, robust error handling, bug fixing, and continuous framework SDK version upgrades ensuring compatibility with the latest Android & iOS standards.",
+      features: [
+        "BCA Flazz NFC integration for fast contactless transactions",
+        "QRIS CPM & Tap payment gateway integration",
+        "Framework SDK upgrade to latest Dart/Flutter releases",
+        "Optimized microservice API communication layer"
       ]
     },
     {
