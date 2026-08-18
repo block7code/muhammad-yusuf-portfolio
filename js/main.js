@@ -1,5 +1,6 @@
 /**
- * Main Application Logic for Fharza Yusuf's Portfolio
+ * Main Application Logic for Muhammad Yusuf's Portfolio
+ * Optimized for Desktop, Tablet & Mobile Devices
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,7 +32,6 @@ function initTheme() {
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme === 'light');
   } else if (!prefersDark) {
-    // Default to dark as primary aesthetic, but honor light if chosen
     document.documentElement.setAttribute('data-theme', 'dark');
     updateThemeIcon(false);
   }
@@ -62,7 +62,7 @@ function initTheme() {
 }
 
 /* ==========================================================================
-   NAVIGATION & ACTIVE LINK SPY
+   NAVIGATION & ACTIVE LINK SPY (Mobile & Desktop)
    ========================================================================== */
 function initNavigation() {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -72,14 +72,35 @@ function initNavigation() {
 
   // Mobile menu toggle
   if (mobileMenuBtn && navLinks) {
-    mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.toggle('active');
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+      
+      // Toggle Hamburger vs Close X icon
+      if (isOpen) {
+        mobileMenuBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+      } else {
+        mobileMenuBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+      }
     });
 
+    // Close on link click
     links.forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
       });
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+      }
     });
   }
 
@@ -89,7 +110,7 @@ function initNavigation() {
     
     sections.forEach(current => {
       const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 120;
+      const sectionTop = current.offsetTop - 140;
       const sectionId = current.getAttribute('id');
       
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -101,7 +122,7 @@ function initNavigation() {
         });
       }
     });
-  });
+  }, { passive: true });
 }
 
 /* ==========================================================================
@@ -122,6 +143,10 @@ function renderProjects(filter = 'all') {
         <span class="project-badge">${project.categoryLabel}</span>
       </div>
       <div class="project-content">
+        <div class="project-meta-info">
+          <span>${project.company || 'Featured Project'}</span>
+          <span>${project.period || ''}</span>
+        </div>
         <h3 class="project-title">${project.title}</h3>
         <p class="project-summary">${project.summary}</p>
         <div class="project-tags">
@@ -162,6 +187,9 @@ function initProjectFilters() {
       btn.classList.add('active');
       const filter = btn.getAttribute('data-filter');
       renderProjects(filter);
+      
+      // Scroll the selected filter button into view on mobile
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     });
   });
 }
@@ -194,28 +222,30 @@ function openProjectModal(projectId) {
   if (!project || !modalContent) return;
 
   modalContent.innerHTML = `
-    <div style="margin-bottom: 1.5rem;">
-      <span class="project-badge" style="position: static; margin-bottom: 0.75rem; display: inline-block;">
-        ${project.categoryLabel}
-      </span>
-      <h2 style="font-size: 1.85rem; margin-bottom: 0.5rem;">${project.title}</h2>
-      <p style="color: var(--accent-cyan); font-weight: 500;">${project.subtitle}</p>
+    <div style="margin-bottom: 1.25rem;">
+      <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.6rem; flex-wrap: wrap;">
+        <span class="project-badge" style="position: static;">${project.categoryLabel}</span>
+        ${project.company ? `<span style="font-size: 0.82rem; color: var(--accent-teal); font-weight: 600;">• ${project.company}</span>` : ''}
+        ${project.period ? `<span class="font-mono" style="font-size: 0.78rem; color: var(--text-muted);">(${project.period})</span>` : ''}
+      </div>
+      <h2 style="font-size: clamp(1.4rem, 3vw, 1.85rem); margin-bottom: 0.4rem; line-height: 1.3;">${project.title}</h2>
+      <p style="color: var(--accent-cyan); font-weight: 500; font-size: 0.95rem;">${project.subtitle}</p>
     </div>
 
-    <div style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: 1.75rem; aspect-ratio: 16/9;">
+    <div style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: 1.5rem; aspect-ratio: 16/9;">
       <img src="${project.image}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
 
-    <div style="margin-bottom: 1.75rem;">
-      <h4 style="margin-bottom: 0.6rem; font-size: 1.1rem;">Overview & Architecture</h4>
-      <p style="font-size: 0.98rem; line-height: 1.7; color: var(--text-secondary);">${project.description}</p>
+    <div style="margin-bottom: 1.5rem;">
+      <h4 style="margin-bottom: 0.5rem; font-size: 1.05rem;">Overview & Architecture</h4>
+      <p style="font-size: 0.95rem; line-height: 1.65; color: var(--text-secondary);">${project.description}</p>
     </div>
 
-    <div style="margin-bottom: 1.75rem;">
-      <h4 style="margin-bottom: 0.6rem; font-size: 1.1rem;">Key Highlights & Features</h4>
+    <div style="margin-bottom: 1.5rem;">
+      <h4 style="margin-bottom: 0.5rem; font-size: 1.05rem;">Key Highlights & Implemented Features</h4>
       <ul style="list-style: none;">
         ${project.features.map(f => `
-          <li style="position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.95rem;">
+          <li style="position: relative; padding-left: 1.35rem; margin-bottom: 0.45rem; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.5;">
             <span style="position: absolute; left: 0; color: var(--accent-teal); font-weight: bold;">✔</span>
             ${f}
           </li>
@@ -223,24 +253,24 @@ function openProjectModal(projectId) {
       </ul>
     </div>
 
-    <div style="margin-bottom: 2rem;">
-      <h4 style="margin-bottom: 0.6rem; font-size: 1.1rem;">Tech Stack & Integrations</h4>
+    <div style="margin-bottom: 1.75rem;">
+      <h4 style="margin-bottom: 0.5rem; font-size: 1.05rem;">Tech Stack & Frameworks</h4>
       <div class="project-tags">
-        ${project.tags.map(tag => `<span class="project-tag" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">${tag}</span>`).join('')}
+        ${project.tags.map(tag => `<span class="project-tag" style="font-size: 0.8rem; padding: 0.25rem 0.65rem;">${tag}</span>`).join('')}
       </div>
     </div>
 
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
       ${project.githubUrl ? `
-        <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="flex: 1; min-width: 180px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          View Source Repository
+          Repository
         </a>
       ` : ''}
       ${project.liveUrl && project.liveUrl !== '#' ? `
-        <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1; min-width: 180px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-          Open Live Demo / Package
+          Open App / Portal
         </a>
       ` : ''}
     </div>
@@ -264,6 +294,7 @@ function closeProjectModal() {
 function initContactForm() {
   const form = document.getElementById('contactForm');
   const copyEmailBtn = document.getElementById('copyEmailBtn');
+  const copyPhoneBtn = document.getElementById('copyPhoneBtn');
   const copyLinkedinBtn = document.getElementById('copyLinkedinBtn');
 
   if (form) {
@@ -278,10 +309,9 @@ function initContactForm() {
         return;
       }
 
-      // Simulate successful dispatch & direct mailto link trigger
-      showToast(`Thank you, ${name}! Your message has been prepared.`);
+      showToast(`Thank you, ${name}! Your email client is opening.`);
       
-      const mailtoLink = `mailto:${PORTFOLIO_DATA.profile.email}?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + "\n\nFrom: " + email)}`;
+      const mailtoLink = `mailto:${PORTFOLIO_DATA.profile.email}?subject=Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + "\n\nContact Email: " + email)}`;
       window.location.href = mailtoLink;
       
       form.reset();
@@ -292,6 +322,14 @@ function initContactForm() {
     copyEmailBtn.addEventListener('click', () => {
       navigator.clipboard.writeText(PORTFOLIO_DATA.profile.email).then(() => {
         showToast('Email address copied to clipboard!');
+      });
+    });
+  }
+
+  if (copyPhoneBtn) {
+    copyPhoneBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(PORTFOLIO_DATA.profile.phone).then(() => {
+        showToast('Phone / WhatsApp number copied to clipboard!');
       });
     });
   }
@@ -317,7 +355,7 @@ function showToast(message, type = 'success') {
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.innerHTML = `
-    <span style="color: ${type === 'error' ? '#ef4444' : 'var(--accent-teal)'};">
+    <span style="color: ${type === 'error' ? '#ef4444' : 'var(--accent-teal)'}; font-weight: bold;">
       ${type === 'error' ? '⚠' : '✓'}
     </span>
     <span>${message}</span>
@@ -327,7 +365,7 @@ function showToast(message, type = 'success') {
 
   setTimeout(() => {
     toast.style.opacity = '0';
-    toast.style.transform = 'translateX(50px)';
+    toast.style.transform = 'translateY(20px)';
     toast.style.transition = 'all 0.3s ease';
     setTimeout(() => toast.remove(), 300);
   }, 3500);
@@ -338,8 +376,8 @@ function showToast(message, type = 'success') {
    ========================================================================== */
 function initScrollAnimations() {
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0.1,
+    rootMargin: '0px 0px -30px 0px'
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -366,7 +404,7 @@ function initBackToTop() {
     } else {
       backToTopBtn.classList.remove('visible');
     }
-  });
+  }, { passive: true });
 
   backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
