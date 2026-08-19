@@ -115,7 +115,7 @@ const PORTFOLIO_DATA = {
       category: "banking",
       categoryLabel: "Mobile Banking (Flutter)",
       featured: true,
-      image: "assets/images/project-jconnect-dashboard.png",
+      image: "assets/images/project-jconnect-apps.png",
       period: "January 2023 - Present",
       company: "PT Infosys Solusi Terpadu",
       summary: "Developed mobile banking application from scratch for all Bank Jatim account holders. Built responsive UI, microservices API integration, and offline-first Hive storage.",
