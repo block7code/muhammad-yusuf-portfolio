@@ -121,7 +121,7 @@ const PORTFOLIO_DATA = {
       summary: "Developed mobile banking application from scratch for all Bank Jatim account holders. Built responsive UI, microservices API integration, and offline-first Hive storage.",
       tags: ["Flutter", "Dart", "Microservices", "Hive NoSQL", "NFC Flazz BCA", "QRIS CPM/Tap"],
       githubUrl: "",
-      liveUrl: "https://www.bankjatim.co.id",
+      liveUrl: "#",
       metrics: "500k+ Active Users | Production Banking App",
       description: "Full end-to-end development of Bank Jatim's flagship mobile banking application (Jconnect). Engineered fluid, secure banking workflows, microservices consumption, and complex financial features.",
       features: [
@@ -145,7 +145,7 @@ const PORTFOLIO_DATA = {
       summary: "Developed mobile banking application from scratch with Setor Tunai, Deeplink, BI-Fast transfer, eKYC Onboarding, and NFC e-money integration.",
       tags: ["Flutter", "Dart", "BI-Fast", "eKYC Onboarding", "NFC e-Money", "Deeplink"],
       githubUrl: "",
-      liveUrl: "https://www.bankaceh.co.id",
+      liveUrl: "#",
       metrics: "All Bank Aceh Account Holders",
       description: "Comprehensive mobile banking application built with Flutter from the ground up. Enabled digital account opening via eKYC, instant interbank transfers with BI Fast, and cardless cash deposits (Setor Tunai).",
       features: [
@@ -169,7 +169,7 @@ const PORTFOLIO_DATA = {
       summary: "Developing and maintaining Bank Jateng mobile banking application (BIMA), integrating microservices, BCA Flazz, QRIS CPM/Tap, and major SDK framework upgrades.",
       tags: ["Flutter", "Dart", "Microservices", "Shared Preferences", "BCA Flazz", "QRIS CPM"],
       githubUrl: "",
-      liveUrl: "https://www.bankjateng.co.id",
+      liveUrl: "#",
       metrics: "Enterprise Bank Jateng Client Base",
       description: "Engineered responsive banking UI, robust error handling, bug fixing, and continuous framework SDK version upgrades ensuring compatibility with the latest Android & iOS standards.",
       features: [
@@ -215,7 +215,7 @@ const PORTFOLIO_DATA = {
       summary: "End-to-end development of XL Dealer complaint handling system with Flutter mobile app and Lumen REST API backend on Huawei OWS Platform.",
       tags: ["Flutter", "Lumen", "Huawei OWS", "REST API", "Android/iOS", "Play Store"],
       githubUrl: "",
-      liveUrl: "https://play.google.com/store/apps/details?id=com.rodealer2.ro_dealer2",
+      liveUrl: "#",
       metrics: "1,000+ Active XL Dealers on Play Store",
       description: "Built for PT Huawei Tech Investment to streamline complaint tracking and resolution for XL Axiata network dealers across Indonesia.",
       features: [
@@ -261,7 +261,7 @@ const PORTFOLIO_DATA = {
       summary: "Full ecosystem for motorcycle mechanics: Flutter app, Laravel dashboard, Lumen API, Node.js WhatsApp OTP, Docker, and Xendit digital money/bank disbursement.",
       tags: ["Flutter", "Laravel", "Lumen", "Node.js", "Docker", "Xendit", "MySQL"],
       githubUrl: "",
-      liveUrl: "https://play.google.com/store/apps/details?id=com.elangsung.club",
+      liveUrl: "#",
       metrics: "Play Store Published | Automated Xendit Payouts",
       description: "Comprehensive loyalty and payout system for mechanics and motorcycle workshops across Indonesia, featuring barcode scanning and digital wallet cashouts.",
       features: [
@@ -285,7 +285,7 @@ const PORTFOLIO_DATA = {
       summary: "Engineered PPOB retail payment APIs, top-up deposit web, and operational dashboards serving 30,000+ users with MySQL replication.",
       tags: ["PHP 7", "Laravel", "Lumen", "MySQL Replicated", "CentOS 7", "Bimasakti", "Finnet", "OVO"],
       githubUrl: "",
-      liveUrl: "https://play.google.com/store/apps/details?id=retail.kepoo.com.kepooretail",
+      liveUrl: "#",
       metrics: "30,000+ Users | 10,000+ App Accounts",
       description: "Developed the core backend RESTful APIs integrating multi-vendor payment providers (Bimasakti, Finnet, OVO) for electricity, telco, BPJS, and financial transactions.",
       features: [
