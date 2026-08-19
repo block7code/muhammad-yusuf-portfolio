@@ -139,7 +139,7 @@ const PORTFOLIO_DATA = {
       category: "banking",
       categoryLabel: "Mobile Banking (Flutter)",
       featured: true,
-      image: "assets/images/project-ekyc-screen.png",
+      image: "assets/images/project-action-apps.png",
       period: "June 2022 - Dec 2022 & Jan 2026",
       company: "PT Infosys Solusi Terpadu",
       summary: "Developed mobile banking application from scratch with Setor Tunai, Deeplink, BI-Fast transfer, eKYC Onboarding, and NFC e-money integration.",
