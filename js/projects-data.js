@@ -232,7 +232,7 @@ const PORTFOLIO_DATA = {
       category: "web",
       categoryLabel: "Enterprise Dashboards",
       featured: false,
-      image: "assets/images/project-laravel.jpg",
+      image: "assets/images/project-dashboards-e3e.jpg",
       period: "September 2019 - April 2022",
       company: "PT Huawei Tech Investment",
       summary: "Engineered critical telecom vendor dashboards for Huawei including Autohealing, FME, E2E monitoring, Google Maps tracking, and FRS alarm ticketing.",
