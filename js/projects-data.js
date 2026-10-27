@@ -11,7 +11,7 @@ const PORTFOLIO_DATA = {
     role: "Senior Software Developer",
     tagline: "Specializing in High-Performance Banking Mobile Apps (Flutter) & Scalable Enterprise Web Systems (Next.js, Vue, Laravel)",
     location: "Jagakarsa, Jakarta Selatan, DKI Jakarta, Indonesia",
-    phone: "+62 81283719444",
+    phone: "+62 895329059362",
     email: "fharzayusuf@gmail.com",
     linkedin: "https://www.linkedin.com/in/fharza-yusuf-8330aa151/",
     github: "https://github.com/yusuffharza",
